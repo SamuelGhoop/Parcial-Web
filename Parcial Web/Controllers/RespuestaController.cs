@@ -21,10 +21,9 @@ namespace Parcial_Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Respuesta newRespuesta)
+        [HttpPost("{PreguntaId}")]
+        public async Task<IActionResult> Create(Guid PreguntaId, [FromBody] Respuesta respuesta)
         {
-
             var newRespuesta = await _respuestaService.Create(respuesta, PreguntaId);
             return Ok(newRespuesta);
         }
@@ -32,9 +31,8 @@ namespace Parcial_Web.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var pregunta = await _respuestaService.GetById(id);
-            return pregunta != null ? Ok(pregunta) : NotFound();
-
+            var respuesta = await _respuestaService.GetById(id);
+            return respuesta != null ? Ok(respuesta) : NotFound();
         }
     }
 }

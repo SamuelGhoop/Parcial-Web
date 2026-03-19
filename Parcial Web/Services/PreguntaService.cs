@@ -19,12 +19,15 @@ namespace Parcial_Web.Services
         {
             var pregunta = new Pregunta
             {
-                estado = "Sin resolver"
+                enunciado = newPregunta.enunciado,
+                categoria = newPregunta.categoria,
+                estado = "Sin resolver",
+                isActive = 1
             };
 
             _context.Pregunta.Add(pregunta);
             await _context.SaveChangesAsync();
-            return newPregunta;
+            return pregunta;
         }
 
         public async Task<Pregunta?> GetById(Guid id) => await _context.Pregunta.FindAsync(id);
