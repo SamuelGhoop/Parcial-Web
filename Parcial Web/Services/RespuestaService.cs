@@ -14,13 +14,13 @@ namespace Parcial_Web.Services
             _context = context;
         }
 
-        public async Task<Respuesta> Create(Respuesta newRespuesta, string PreguntaId)
+        public async Task<Respuesta> Create(Respuesta newRespuesta, Guid PreguntaId)
         {
             var respuesta = new Respuesta
             {
+                contenido = newRespuesta.contenido,
                 PreguntaId = PreguntaId,
-                estado = "Resuelta",
-                fecha_creacion = DateTime.Now
+                fechaCreacion = DateTime.Now
             };
 
             _context.Respuesta.Add(respuesta);
@@ -28,6 +28,6 @@ namespace Parcial_Web.Services
             return respuesta;
         }
 
-        public async Task<Pregunta?> GetById(Guid id) => await _context.Pregunta.FindAsync(id);
+        public async Task<Respuesta?> GetById(Guid id) => await _context.Respuesta.FindAsync(id);
     }
 }
